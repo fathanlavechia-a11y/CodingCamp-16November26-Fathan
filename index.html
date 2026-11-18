@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- Storage warning banner (shown when localStorage is unavailable) -->
+  <div id="storage-warning" class="storage-warning" role="alert" hidden>
+    Local storage is unavailable — your data will not be saved.
+  </div>
+
+  <!-- Top bar: app title and theme toggle -->
+  <header class="app-header">
+    <h1 class="app-title">Personal Dashboard</h1>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="theme-toggle__label">Light</span>
+    </button>
+  </header>
+
+  <!-- User-name input panel -->
+  <section class="username-panel" aria-label="Set your name">
+    <form id="username-form" class="username-form" novalidate>
+      <label for="username-input" class="username-form__label">Your name</label>
+      <input
+        id="username-input"
+        class="username-form__input"
+        type="text"
+        maxlength="50"
+        placeholder="Enter your name…"
+        autocomplete="off"
+      />
+      <button type="submit" class="username-form__submit">Save</button>
+    </form>
+  </section>
+
+  <!-- Main dashboard grid -->
+  <main class="dashboard-grid">
+
+    <!-- Widget 1: Greeting -->
+    <section id="greeting-widget" class="widget widget--greeting" aria-label="Greeting">
+      <p id="greeting-time" class="greeting__time" aria-live="polite">00:00</p>
+      <p id="greeting-date" class="greeting__date"></p>
+      <p id="greeting-text" class="greeting__text" aria-live="polite">Good Morning</p>
+    </section>
+
+    <!-- Widget 2: Focus Timer -->
+    <section id="focus-timer-widget" class="widget widget--timer" aria-label="Focus Timer">
+      <h2 class="widget__title">Focus Timer</h2>
+      <p id="timer-display" class="timer__display" aria-live="polite" aria-atomic="true">25:00</p>
+      <div class="timer__controls">
+        <button id="timer-start" class="timer__btn timer__btn--start" type="button">Start</button>
+        <button id="timer-stop"  class="timer__btn timer__btn--stop"  type="button" disabled>Stop</button>
+        <button id="timer-reset" class="timer__btn timer__btn--reset" type="button" disabled>Reset</button>
+      </div>
+      <p id="timer-notification" class="timer__notification" role="status" hidden>
+        Session complete! Great work.
+      </p>
+    </section>
+
+    <!-- Widget 3: To-Do List -->
+    <section id="todo-widget" class="widget widget--todo" aria-label="To-Do List">
+      <h2 class="widget__title">To-Do List</h2>
+
+      <!-- Add-task form -->
+      <form id="todo-form" class="todo-form" novalidate>
+        <label for="todo-input" class="sr-only">New task</label>
+        <input
+          id="todo-input"
+          class="todo-form__input"
+          type="text"
+          maxlength="200"
+          placeholder="Add a task…"
+          autocomplete="off"
+        />
+        <button type="submit" class="todo-form__submit">Add</button>
+        <p id="todo-error" class="todo-form__error" role="alert" hidden></p>
+      </form>
+
+      <!-- Sort control -->
+      <div class="todo-sort">
+        <label for="todo-sort-select" class="todo-sort__label">Sort:</label>
+        <select id="todo-sort-select" class="todo-sort__select" disabled>
+          <option value="default">Default</option>
+          <option value="az">A–Z</option>
+          <option value="completed-last">Completed Last</option>
+        </select>
+      </div>
+
+      <!-- Task list -->
+      <ul id="todo-list" class="todo-list" aria-label="Tasks">
+        <!-- Tasks rendered here by JS -->
+      </ul>
+      <p id="todo-empty" class="todo-empty" hidden>No tasks yet. Add one above!</p>
+    </section>
+
+    <!-- Widget 4: Quick Links -->
+    <section id="quicklinks-widget" class="widget widget--links" aria-label="Quick Links">
+      <h2 class="widget__title">Quick Links</h2>
+
+      <!-- Add-link form -->
+      <form id="links-form" class="links-form" novalidate>
+        <label for="link-label-input" class="sr-only">Link label</label>
+        <input
+          id="link-label-input"
+          class="links-form__input"
+          type="text"
+          maxlength="100"
+          placeholder="Label"
+          autocomplete="off"
+        />
+        <label for="link-url-input" class="sr-only">Link URL</label>
+        <input
+          id="link-url-input"
+          class="links-form__input links-form__input--url"
+          type="url"
+          placeholder="https://example.com"
+          autocomplete="off"
+        />
+        <button type="submit" class="links-form__submit">Add Link</button>
+        <p id="links-error" class="links-form__error" role="alert" hidden></p>
+      </form>
+
+      <!-- Links list -->
+      <ul id="links-list" class="links-list" aria-label="Quick links">
+        <!-- Links rendered here by JS -->
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>
